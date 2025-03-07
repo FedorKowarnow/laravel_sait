@@ -31,4 +31,6 @@ Route::get('/Main', MainController::class)->name('main');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::group(['namespace' => 'App\Http\Controllers\User'], function () {
+Route::patch('/home/{user}',UpdateController::class)->name('user.update');
+});
