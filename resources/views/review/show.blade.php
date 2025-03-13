@@ -4,6 +4,17 @@
   
     <div>{{$review->id}}.{{$review->title}}</div>
     <div>{{$review->content}}</div>
+
+    <form action="{{route('reviewUserLike.update', $review->id)}}" method="post">
+        @csrf
+        @method('patch')
+        <select name="review_id" key="review_id" id="review_id">
+            <option  value="{{ $review->id }}"></option>
+        </select>
+          <div name="review_id" key="review_id"  value="{{ $review->id }}"></div>
+          <button type="submit" class="btn btn-primary mb-3" name="like"  value="{{true}}">Like</button>
+          <button type="submit" class="btn btn-primary mb-3" name="dislike" value="{{true}}">Disike</button>
+      </form>
     
     
   </div>

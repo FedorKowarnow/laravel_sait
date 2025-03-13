@@ -34,3 +34,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['namespace' => 'App\Http\Controllers\User'], function () {
 Route::patch('/home/{user}',UpdateController::class)->name('user.update');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\ReviewUserLike'], function () {
+    Route::patch('/reviews2/{review2}',UpdateController::class)->name('reviewUserLike.update');
+});
