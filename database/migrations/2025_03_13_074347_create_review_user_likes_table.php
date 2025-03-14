@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->boolean('like')->nullable();
-            $table->boolean('dislike')->nullable();
+            //$table->boolean('dislike')->nullable();
 
             $table->unsignedBigInteger('review_id');
             $table->unsignedBigInteger('user_id');

@@ -36,5 +36,5 @@ Route::patch('/home/{user}',UpdateController::class)->name('user.update');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\ReviewUserLike'], function () {
-    Route::patch('/reviews2/{review2}',UpdateController::class)->name('reviewUserLike.update');
+    Route::post('/reviewUserLike',StoreController::class)->name('reviewUserLike.store')->middleware('auth');
 });

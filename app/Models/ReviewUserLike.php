@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReviewUserLike extends Model
 {
-    protected $fillable = ['review_id','like','dislike', 'user_id'];
+    protected $fillable = ['review_id','like', 'user_id'];
     protected $table = 'review_user_likes';
     protected $quarded = false;
 
