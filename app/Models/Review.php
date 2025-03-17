@@ -28,4 +28,8 @@ class Review extends Model
         return $this->belongsToMany(ReviewUserLike::class);
     }
 
+    public function reviewUserComment(){
+        return $this->hasMany(ReviewUserComment::class);
+    }
+
 }

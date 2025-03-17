@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\ReviewUserLike;
+namespace App\Http\Requests\ReviewUserComment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,8 +22,11 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'content'=>'',
+            'image'=>'',
             'review_id'=>'',
-            'like'=> 'bool',     
+            'user_id'=>'',
+            'reply_id'=>'',      
         ];
     }
 }

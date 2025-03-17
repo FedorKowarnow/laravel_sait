@@ -5,19 +5,12 @@
     <div>{{$review->id}}.{{$review->title}}</div>
     <div>{{$review->content}}</div>
 
-    <form action="{{route('reviewUserLike.store')}}" method="post">
-        @csrf
-        
-        <select name="review_id" key="review_id" id="review_id">
-            <option  value="{{ $review->id }}"></option>
-        </select>
-          <div name="review_id" key="review_id"  value="{{ $review->id }}"></div>
+    <form action="{{route('review.reviewUserLike.store', $review->id)}}" method="post">
+        @csrf  
           <button type="submit" class="btn btn-primary mb-3" name="like"  value="{{1}}">Like</button>
           <button type="submit" class="btn btn-primary mb-3" name="like" value="{{0}}">Disike</button>
-      </form>
-    
-    
-  </div>
+    </form>
+
   <div>
       <a href="{{route('review.edit', $review->id)}}">Редактировать</a>
   </div>
@@ -25,10 +18,52 @@
       <form action="{{route('review.destroy', $review->id)}}" method="post">
           @csrf
           @method('delete')
-          <input type="submit" value="Удалить"></input>
+          <input type="submit" value="Удалить Обзор"></input>
       </form>
   </div>
   <div>
       <a href="{{route('review.index')}}">Назад</a>
-  </div> 
+  </div>
+  <hr>
+</div>
+
+@foreach ($reviewUserComments as $reviewUserComment)
+<div>
+  @foreach ($users as $user)
+            <p>{{ $user->id === $reviewUserComment->user_id ? 'Автор: '.$user->name : ''}}</p>
+  @endforeach
+  <a>Текст комментария: {{$reviewUserComment->content}}</a>
+
+  <div>
+    <form action="{{route('reviewUserComment.destroy', $reviewUserComment->id)}}" method="post">
+        @csrf
+        @method('delete')
+        <input type="submit" value="Удалить"></input>
+    </form>
+</div>
+
+  <hr>
+</div>
+@endforeach
+
+<div>
+  {{$reviewUserComments->withQueryString()->links()}}
+</div>
+
+  <hr>
+  <div>
+    <form action="{{route('review.reviewUserComment.store', $review->id)}}" method="post">
+      @csrf
+        <div class="mb-3">
+          <textarea class="form-control" name="content" id="content" placeholder="Commentary">{{old('content')}}</textarea>
+        </div>
+        <div class="mb-3">
+          <input value="{{old('image')}}" type="text" name="image" class="form-control" id="image" placeholder="Image">
+          @error('image')
+          <p class="text-danger">Ошибка с добавлением фото</p>
+          @enderror
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Опубликовать</button>
+    </form>
+  </div>
 @endsection

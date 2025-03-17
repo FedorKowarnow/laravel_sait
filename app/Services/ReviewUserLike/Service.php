@@ -13,11 +13,8 @@ class Service{
 
         if($model==null){
             ReviewUserLike::create($data);
-        }elseif (($data['like']== $model->like)){
-            $model->delete();
         } else {
-            $model->update($data);
+            $data['like']== $model->like ? $model->delete() : $model->update($data);
         }
-
     }
 }

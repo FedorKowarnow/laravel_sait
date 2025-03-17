@@ -11,10 +11,12 @@ Route::get('/', function () {
     //return view('welcome');
 });
 
+//Category
 Route::group(['namespace' => 'App\Http\Controllers\Category'], function () {
 Route::get('/category',IndexController::class)->name('category.index');
 });
 
+//Review
 Route::group(['namespace' => 'App\Http\Controllers\Review'], function () {
     Route::get('/reviews',IndexController::class)->name('review.index');
     Route::get('/review/create',CreateController::class)->name('review.create')->middleware('auth');
@@ -25,16 +27,26 @@ Route::group(['namespace' => 'App\Http\Controllers\Review'], function () {
     Route::delete('/reviews/{review}',DestroyController::class)->name('review.destroy');
 });
 
+//Review Comment
+Route::group(['namespace' => 'App\Http\Controllers\ReviewUserComment'], function () {
+    Route::post('/review/{review}/reviewUserComments',StoreController::class)->name('review.reviewUserComment.store')->middleware('auth');
+    Route::delete('/reviewUserComments/{reviewUserComment}',DestroyController::class)->name('reviewUserComment.destroy');
+});
 
+
+//Main page
 Route::get('/main', MainController::class)->name('main');
 
+//Standart UserPage
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//UserPage
 Route::group(['namespace' => 'App\Http\Controllers\User'], function () {
 Route::patch('/home/{user}',UpdateController::class)->name('user.update');
 });
 
+//Add Like For Review
 Route::group(['namespace' => 'App\Http\Controllers\ReviewUserLike'], function () {
-    Route::post('/reviewUserLike',StoreController::class)->name('reviewUserLike.store')->middleware('auth');
+    Route::post('/review/{review}/reviewUserLike',StoreController::class)->name('review.reviewUserLike.store')->middleware('auth');
 });

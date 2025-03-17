@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Review;
 
 
 use App\Models\Review;
+use App\Models\ReviewUserComment;
+use App\Models\ReviewUserLike;
 use Illuminate\Support\Facades\Gate;
+
 
 
 class DestroyController extends BaseController
@@ -13,6 +16,9 @@ class DestroyController extends BaseController
     {
         Gate::authorize('delete', $review);
         $review->delete();
+        ReviewUserComment::where('review_id','=', $review->id)->delete();
+        ReviewUserLike::where('review_id','=', $review->id)->delete();
+
         return redirect()->route('review.index');
     }
         

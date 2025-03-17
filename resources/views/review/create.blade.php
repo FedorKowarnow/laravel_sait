@@ -37,6 +37,5 @@
         </div>
         <button type="submit" class="btn btn-primary mb-3">Опубликовать</button>
     </form>
-    
   </div>
 @endsection
