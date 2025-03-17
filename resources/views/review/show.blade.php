@@ -29,9 +29,7 @@
 
 @foreach ($reviewUserComments as $reviewUserComment)
 <div>
-  @foreach ($users as $user)
-            <p>{{ $user->id === $reviewUserComment->user_id ? 'Автор: '.$user->name : ''}}</p>
-  @endforeach
+   <p>{{ 'Автор: '.$reviewUserComment->user->name}}</p>
   <a>Текст комментария: {{$reviewUserComment->content}}</a>
 
   <div>

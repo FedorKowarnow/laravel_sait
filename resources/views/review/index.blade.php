@@ -7,12 +7,9 @@
     @foreach ($reviews as $review)
     <div>
       <a href="{{route('review.show', $review->id)}}">{{$review->id}}.{{$review->title}}</a>
-      @foreach ($users as $user)
-      <div>
-        
-            <p>{{ $user->id === $review->user_id ? "Обзор создал: ". $user->name : ''}}</p>
+      <div> 
+            <p>{{ "Обзор создал: ". $review->user->name}}</p>
       </div>
-      @endforeach
     </div>
 
     @endforeach

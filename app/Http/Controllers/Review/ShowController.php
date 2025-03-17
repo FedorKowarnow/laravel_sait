@@ -14,7 +14,7 @@ class ShowController extends BaseController
     {   
         $reviewUserComments=ReviewUserComment::where('review_id','=', $review->id)->paginate(10);
 
-        $users=[];
+        /*$users=[];
         $user2=[];
 
         foreach ($reviewUserComments as $reviewUserComment){
@@ -23,9 +23,9 @@ class ShowController extends BaseController
             $users+=$user->all();
         }
         $user2=$user;
-        }
+        }*/
         
-        return view('review.show', compact('review','reviewUserComments', 'users'));
+        return view('review.show', compact('review','reviewUserComments'));
     }
         
     

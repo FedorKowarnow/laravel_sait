@@ -25,7 +25,7 @@ class Review extends Model
     }
 
     public function reviewUserLike(){
-        return $this->belongsToMany(ReviewUserLike::class);
+        return $this->hasMany(ReviewUserLike::class);
     }
 
     public function reviewUserComment(){

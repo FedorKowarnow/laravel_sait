@@ -11,10 +11,12 @@ class ReviewUserLike extends Model
     protected $quarded = false;
 
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
+        //return $this->belongsToMany(User::class);
     }
 
     public function review(){
-        return $this->belongsToMany(Review::class);
+        return $this->belongsTo(Review::class);
+        //return $this->belongsToMany(Review::class);
     }
 }
