@@ -50,3 +50,8 @@ Route::patch('/home/{user}',UpdateController::class)->name('user.update');
 Route::group(['namespace' => 'App\Http\Controllers\ReviewUserLike'], function () {
     Route::post('/review/{review}/reviewUserLike',StoreController::class)->name('review.reviewUserLike.store')->middleware('auth');
 });
+
+//Add Like For Comment
+Route::group(['namespace' => 'App\Http\Controllers\CommentUserLike'], function () {
+    Route::post('/reviewUserComments/{reviewUserComment}/commentUserLike',StoreController::class)->name('reviewUserComment.commentUserLike.store')->middleware('auth');
+});

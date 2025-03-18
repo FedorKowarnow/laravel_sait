@@ -17,5 +17,9 @@ class ReviewUserComment extends Model
     public function review(){
         return $this->belongsTo(Review::class);
     }
+
+    public function commentUserLike(){
+        return $this->hasMany(CommentUserLike::class);
+    }
 }
 

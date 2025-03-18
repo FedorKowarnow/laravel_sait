@@ -32,6 +32,12 @@
   <p>{{ 'Автор: '.$reviewUserComment->user->name}}</p>
   <a>Текст комментария: {{$reviewUserComment->content}}</a>
 
+  <form action="{{route('reviewUserComment.commentUserLike.store', $reviewUserComment->id)}}" method="post">
+    @csrf  
+      <button type="submit" class="btn btn-primary mb-3" name="like"  value="{{1}}">Like</button>
+      <button type="submit" class="btn btn-primary mb-3" name="like" value="{{0}}">Disike</button>
+</form>
+
   <div>
     <form action="{{route('reviewUserComment.destroy', $reviewUserComment->id)}}" method="post">
         @csrf
