@@ -29,7 +29,7 @@
 
 @foreach ($reviewUserComments as $reviewUserComment)
 <div>
-   <p>{{ 'Автор: '.$reviewUserComment->user->name}}</p>
+  <p>{{ 'Автор: '.$reviewUserComment->user->name}}</p>
   <a>Текст комментария: {{$reviewUserComment->content}}</a>
 
   <div>

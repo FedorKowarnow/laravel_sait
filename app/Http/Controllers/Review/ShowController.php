@@ -12,7 +12,9 @@ class ShowController extends BaseController
 {
     public function __invoke(Review $review)
     {   
-        $reviewUserComments=ReviewUserComment::where('review_id','=', $review->id)->paginate(10);
+        $reviewUserComments=$review->reviewUserComment()->paginate(5); 
+        
+        //$reviewUserComments=ReviewUserComment::where('review_id','=', $review->id)->paginate(5); 
 
         /*$users=[];
         $user2=[];
