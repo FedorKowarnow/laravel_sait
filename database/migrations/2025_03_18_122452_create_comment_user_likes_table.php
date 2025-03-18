@@ -17,7 +17,8 @@ return new class extends Migration
 
             $table->boolean('like')->nullable();
 
-            $table->unsignedBigInteger('reviewUserComment_id');
+            //$table->unsignedBigInteger('reviewUserComment_id');
+            $table->unsignedBigInteger('review_user_comment_id');
             $table->unsignedBigInteger('user_id');
         });
     }

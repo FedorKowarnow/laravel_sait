@@ -22,7 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'reviewUserComment_id'=>'',
+            'review_user_comment_id'=>'',
             'like'=> 'bool',     
         ];
     }
