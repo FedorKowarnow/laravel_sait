@@ -40,6 +40,8 @@ Route::get('/main', MainController::class)->name('main');
 //Standart UserPage
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//My logout
+Route::post('/home/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('exit');
 
 //UserPage
 Route::group(['namespace' => 'App\Http\Controllers\User'], function () {
@@ -55,3 +57,5 @@ Route::group(['namespace' => 'App\Http\Controllers\ReviewUserLike'], function ()
 Route::group(['namespace' => 'App\Http\Controllers\CommentUserLike'], function () {
     Route::post('/reviewUserComments/{reviewUserComment}/commentUserLike',StoreController::class)->name('reviewUserComment.commentUserLike.store')->middleware('auth');
 });
+
+
