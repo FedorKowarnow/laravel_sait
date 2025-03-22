@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content') 
 <div>
-    <form action="{{route('review.store')}}" method="post">
+    <form action="{{route('review.store')}}" method="post" enctype="multipart/form-data">
       @csrf
       <div class="mb-3">
           <label for="title" class="form-label">Название обзора</label>
@@ -18,13 +18,6 @@
           @enderror
         </div>
         </div>
-        <div class="mb-3">
-          <label for="image">Фото</label>
-          <input value="{{old('image')}}" type="text" name="image" class="form-control" id="image" placeholder="Image">
-          @error('image')
-          <p class="text-danger">Ошибка с добавлением фото</p>
-          @enderror
-        </div>
         <div>
           <label for="category">Обозреваемый продукт</label>
           <select class="form-select" id="category" name="category_id">
@@ -34,6 +27,13 @@
             value="{{$category->id}}">{{$category->title}}</option>
             @endforeach
           </select>
+        </div>
+        <div class="mb-3">
+          <label for="image">Фото</label>
+          <input type="file" name="image" class="form-control" id="image" placeholder="Image" value="{{old('image')}}"></input>
+          @error('image')
+          <p class="text-danger">Ошибка с добавлением фото</p>
+          @enderror
         </div>
         <button type="submit" class="btn btn-primary mb-3">Опубликовать</button>
     </form>

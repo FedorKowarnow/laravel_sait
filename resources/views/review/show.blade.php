@@ -4,6 +4,10 @@
   
     <div>{{$review->id}}.{{$review->title}}</div>
     <div>{{$review->content}}</div>
+    <div>
+      <img src="{{asset('storage/'.$review->image)}}"></img>
+      <img src="{{url('storage/'.$review->image)}}"></img>
+    </div>
 
     <form action="{{route('review.reviewUserLike.store', $review->id)}}" method="post">
         @csrf  

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Review;
 
 
 use App\Http\Requests\Review\StoreRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -26,6 +27,9 @@ class StoreController extends BaseController
         //Васянство сверху
 
         $data= $request->safe()->merge(['user_id' => Auth::id()])->all();
+        
+        $data['image']=Storage::disk('public')->put('/images',$data['image']);
+        
         $this->service->store($data);
         return redirect()->route('review.index');
     }         

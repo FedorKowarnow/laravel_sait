@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->text('user_info')->nullable();
-            $table->text('user_image')->default('default.img');
+            $table->text('user_image')->default('images/avatars/default.jpg');
         });
     }
 

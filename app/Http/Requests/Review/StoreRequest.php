@@ -27,8 +27,10 @@ class StoreRequest extends FormRequest
         return [
             'title'=>'string',
             'content'=>'string',
-            'image'=>'string',
+            //'image'=>'string',
             'category_id'=>'',
+
+            'image'=>['required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],
             
         ];
     }
