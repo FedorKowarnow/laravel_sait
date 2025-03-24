@@ -16,7 +16,6 @@ class UpdateController extends BaseController
         $data= $request->validated();
         $this->service->update($user, $data); 
         return redirect()->route('home');
-        //test
     }       
     
 }
