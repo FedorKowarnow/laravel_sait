@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Личный кабинет') }}</div>
                 <div>{{Auth::user()->name}}</div>
-                <img src="{{url('storage/'. Auth::user()->user_image)}}"></img>
+                <img src="{{Auth::user()->user_image == null ? url('storage/images/avatars/default.jpg') : url('storage/'. Auth::user()->user_image)}}"></img>
                 <div>{{Auth::user()->user_info}}</div>
                 <div class="card-body">
                     @if (session('status'))
