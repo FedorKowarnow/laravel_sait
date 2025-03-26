@@ -28,11 +28,11 @@ class UpdateRequest extends FormRequest
             return [
             'user_info'=>'',  
         ];
-    } else{
-        return [
-            'user_info'=>'',
-            'user_image'=>['required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],  
-        ];
+        } else{
+            return [
+                'user_info'=>'',
+                'user_image'=>'required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480',  
+            ];
         }
     }
 

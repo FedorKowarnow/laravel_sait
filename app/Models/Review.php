@@ -5,12 +5,15 @@ namespace App\Models;
 use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Review extends Model
+class Review extends Model implements HasMedia
 {
 
     use Filterable;
     use SoftDeletes;
+    use InteractsWithMedia;
     protected $fillable = ['title', 'content','image','category_id','user_id'];
     protected $table = 'reviews';
     protected $quarded = false;

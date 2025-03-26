@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
           <label for="image">Фото</label>
-          <input type="file" name="image" class="form-control" id="image" placeholder="Image" value="{{old('image')}}"></input>
+          <input type="file" multiple name="image[]" class="form-control" id="image" placeholder="Image" accept=".png, .jpg, .jpeg"></input>
           @error('image')
           <p class="text-danger">Ошибка с добавлением фото</p>
           @enderror

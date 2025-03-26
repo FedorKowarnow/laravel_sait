@@ -2,24 +2,42 @@
 
 namespace App\Services\Review;
 
+use Spatie\Image\Image;
+use Spatie\Image\Enums\Fit;
 use App\Models\Review;
 
+
+
 class Service{
+
     public function store($data){
         
-        //$tags = $data['tags'];
-        //unset($data['tags']);
-        $review=Review::create($data);
-        //$post->tags()->attach($tags);
-
+        if (isset($data['image'])){
+            $images=$data['image'];
+            unset($data['image']);
+            $review=Review::create($data);
+            foreach ($images as $image){
+                $convertation=$review->addMedia($image)->toMediaCollection('reviews');
+                if ($convertation->mime_type=='image/jpeg'){
+                    Image::load($convertation->getPath())->quality(60)->save();
+                }
+                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->save();
+            }
+        } else {
+            $review=Review::create($data);
+        }
     }
 
     public function update($review, $data){
-        //$tags = $data['tags'];
-       // unset($data['tags']);
         
         $review->update($data);
-        //$post->tags()->sync($tags);
         $review=$review->fresh();
     }
 }
+
+
+
+
+
+
+

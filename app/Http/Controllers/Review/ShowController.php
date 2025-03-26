@@ -13,20 +13,6 @@ class ShowController extends BaseController
     public function __invoke(Review $review)
     {   
         $reviewUserComments=$review->reviewUserComment()->paginate(5); 
-        
-        //$reviewUserComments=ReviewUserComment::where('review_id','=', $review->id)->paginate(5); 
-
-        /*$users=[];
-        $user2=[];
-
-        foreach ($reviewUserComments as $reviewUserComment){
-        $user=User::all()->where('id', '=', $reviewUserComment->user_id);
-        if ($user2!=$user){
-            $users+=$user->all();
-        }
-        $user2=$user;
-        }*/
-        
         return view('review.show', compact('review','reviewUserComments'));
     }
         

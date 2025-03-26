@@ -4,10 +4,14 @@
   
     <div>{{$review->id}}.{{$review->title}}</div>
     <div>{{$review->content}}</div>
+    <hr>
+    @foreach ($review->getMedia('reviews') as $image)
     <div>
-      <img src="{{asset('storage/'.$review->image)}}"></img>
-      <img src="{{url('storage/'.$review->image)}}"></img>
+      <img src="{{$image->getUrl()}}"></img>
     </div>
+    <hr>
+
+    @endforeach
 
     <form action="{{route('review.reviewUserLike.store', $review->id)}}" method="post">
         @csrf  
