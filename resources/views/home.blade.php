@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Личный кабинет') }}</div>
                 <div>{{Auth::user()->name}}</div>
-                <img src="{{Auth::user()->user_image == null ? url('storage/images/avatars/default.jpg') : url('storage/'. Auth::user()->user_image)}}"></img>
+                <img src="{{Auth::user()->getFirstMediaUrl('avatars')!=null ? Auth::user()->getFirstMediaUrl('avatars') : url('storage/default.jpg')  }}"></img>
                 <div>{{Auth::user()->user_info}}</div>
                 <div class="card-body">
                     @if (session('status'))
@@ -30,12 +30,12 @@
       @csrf
       @method('patch')
         <div class="mb-3">
-          <label for="content" class="form-label">О себе</label>
+          <label for="user_info" class="form-label">О себе</label>
           <textarea class="form-control" name="user_info" id="user_info" placeholder="User_info">{{Auth::user()->user_info}}</textarea>
         </div>
         <div class="mb-3">
             <label for="user_image">Фото</label>
-            <input type="file" name="user_image" class="form-control" id="user_image" placeholder="Image" value={{old('user_image')}}></input>
+            <input type="file" name="user_image" class="form-control" id="user_image" placeholder="Image" accept=".png, .jpg, .jpeg"></input>
             @error('user_image')
             <p class="text-danger">Ошибка с добавлением фото</p>
             @enderror

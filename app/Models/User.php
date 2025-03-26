@@ -6,11 +6,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+
+
+
+
+class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +55,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+   
+  //public $registerMediaConversionsUsingModelInstance = true;
+
+
+    public function registerMediaCollections(): void
+    {
+    $this->addMediaCollection('avatars')
+         ->singleFile();
+    }
+
 
     public function reviews(){
 
@@ -65,4 +82,6 @@ class User extends Authenticatable
     public function commentUserLike(){
         return $this->hasMany(CommentUserLike::class);
     }
+
+    
 }

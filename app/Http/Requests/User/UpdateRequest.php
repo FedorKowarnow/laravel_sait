@@ -4,6 +4,8 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
+
 class UpdateRequest extends FormRequest
 {
     /**
@@ -11,6 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
+        
         return true;
     }
 
@@ -21,10 +24,17 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($_FILES['user_image']['type']==null){
+            return [
+            'user_info'=>'',  
+        ];
+    } else{
         return [
             'user_info'=>'',
-            'user_image'=>['required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],
-            
+            'user_image'=>['required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],  
         ];
+        }
     }
+
+    
 }
