@@ -5,6 +5,7 @@ namespace App\Services\Review;
 use Spatie\Image\Image;
 use Spatie\Image\Enums\Fit;
 use App\Models\Review;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -16,9 +17,13 @@ class Service{
             $images=$data['image'];
             unset($data['image']);
             $review=Review::create($data);
-            foreach ($images as $image){
-                $convertation=$review->addMedia($image)->toMediaCollection('reviews');
-                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->quality(60)->save();
+            foreach ($images as $image){   
+                $convertation=$review->addMedia($image)->usingFileName(bin2hex(random_bytes(8)).'.webp')->toMediaCollection('reviews');
+                $jpeg=Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440);
+                if ($convertation->mime_type=='image/jpeg'){
+                    $jpeg->quality(60);
+                }
+                $jpeg->save();
             }
         } else {
             $review=Review::create($data);
