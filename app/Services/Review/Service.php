@@ -19,11 +19,8 @@ class Service{
             $review=Review::create($data);
             foreach ($images as $image){   
                 $convertation=$review->addMedia($image)->usingFileName(bin2hex(random_bytes(8)).'.webp')->toMediaCollection('reviews');
-                $jpeg=Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440);
-                if ($convertation->mime_type=='image/jpeg'){
-                    $jpeg->quality(60);
-                }
-                $jpeg->save();
+                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->quality(60)->save();
+                dd($review->getMedia('reviews'));
             }
         } else {
             $review=Review::create($data);
