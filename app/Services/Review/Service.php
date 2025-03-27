@@ -20,7 +20,6 @@ class Service{
             foreach ($images as $image){   
                 $convertation=$review->addMedia($image)->usingFileName(bin2hex(random_bytes(8)).'.webp')->toMediaCollection('reviews');
                 Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->quality(60)->save();
-                dd($review->getMedia('reviews'));
             }
         } else {
             $review=Review::create($data);
