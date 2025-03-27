@@ -24,16 +24,11 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($_FILES['user_image']['type']==null){
-            return [
-            'user_info'=>'',  
+        return [
+            'user_info'=>'',
+            'user_image'=> ['extensions:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],  
         ];
-        } else{
-            return [
-                'user_info'=>'',
-                'user_image'=>'required:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480',  
-            ];
-        }
+        
     }
 
     

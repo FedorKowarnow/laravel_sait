@@ -18,10 +18,7 @@ class Service{
             $review=Review::create($data);
             foreach ($images as $image){
                 $convertation=$review->addMedia($image)->toMediaCollection('reviews');
-                if ($convertation->mime_type=='image/jpeg'){
-                    Image::load($convertation->getPath())->quality(60)->save();
-                }
-                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->save();
+                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->quality(60)->save();
             }
         } else {
             $review=Review::create($data);
