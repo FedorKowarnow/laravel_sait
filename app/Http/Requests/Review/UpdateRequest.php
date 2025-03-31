@@ -4,6 +4,7 @@ namespace App\Http\Requests\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class UpdateRequest extends FormRequest
 {
     /**
@@ -20,13 +21,13 @@ class UpdateRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {
+    {   
         return [
             'title'=>'string',
             'content'=>'string',
-            'image'=>'string',
             'category_id'=>'',
-            
+            'image'=> ['array','max:10'],
+            'image.*' => ['extensions:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],         
         ];
     }
 }

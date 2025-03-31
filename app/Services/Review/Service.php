@@ -27,8 +27,17 @@ class Service{
     }
 
     public function update($review, $data){
-        
-        $review->update($data);
+        if (isset($data['image'])){
+            $images=$data['image'];
+            unset($data['image']);
+            $review->update($data);
+            foreach ($images as $image){   
+                $convertation=$review->addMedia($image)->usingFileName(bin2hex(random_bytes(8)).'.webp')->toMediaCollection('reviews');
+                Image::load($convertation->getPath())->fit(fit: Fit::Max, desiredWidth:  2560,  desiredHeight: 1440)->quality(60)->save();
+            }
+        } else {
+            $review->update($data);
+        }
         $review=$review->fresh();
     }
 }

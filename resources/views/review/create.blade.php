@@ -17,7 +17,6 @@
           <p class="text-danger">Проверьте введеный текст</p>
           @enderror
         </div>
-        </div>
         <div>
           <label for="category">Обозреваемый продукт</label>
           <select class="form-select" id="category" name="category_id">

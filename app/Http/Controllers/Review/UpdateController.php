@@ -16,10 +16,9 @@ class UpdateController extends BaseController
         Gate::authorize('update', $review);
         
         $data= $request->validated();
-
+        
         $this->service->update($review, $data);
 
-        
         return redirect()->route('review.show', $review->id);
     }       
     

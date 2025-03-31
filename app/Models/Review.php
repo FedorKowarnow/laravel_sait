@@ -19,6 +19,13 @@ class Review extends Model implements HasMedia
     protected $quarded = false;
 
 
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('reviews')
+            ->onlyKeepLatest(10);
+    }
+
     public function category(){
         return $this->belongsTo(Category::class);
     }
