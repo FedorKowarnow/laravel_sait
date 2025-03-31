@@ -10,7 +10,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Review extends Model implements HasMedia
 {
-
     use Filterable;
     use SoftDeletes;
     use InteractsWithMedia;
