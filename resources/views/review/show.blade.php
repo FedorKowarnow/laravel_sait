@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('content') 
 <div>
-  
     <div>{{$review->id}}.{{$review->title}}</div>
     <div>{{$review->content}}</div>
     <hr>
@@ -10,7 +9,6 @@
       <img src="{{$image->getUrl()}}"></img>
     </div>
     <hr>
-
     @endforeach
 
     <form action="{{route('review.reviewUserLike.store', $review->id)}}" method="post">
@@ -34,47 +32,48 @@
   </div>
   <hr>
 </div>
-
 @foreach ($reviewUserComments as $reviewUserComment)
+<hr>
 <div>
   <p>{{ 'Автор: '.$reviewUserComment->user->name}}</p>
   <a>Текст комментария: {{$reviewUserComment->content}}</a>
-
   <form action="{{route('reviewUserComment.commentUserLike.store', $reviewUserComment->id)}}" method="post">
     @csrf  
       <button type="submit" class="btn btn-primary mb-3" name="like"  value="{{1}}">Like</button>
       <button type="submit" class="btn btn-primary mb-3" name="like" value="{{0}}">Disike</button>
-</form>
-
+  </form>
   <div>
     <form action="{{route('reviewUserComment.destroy', $reviewUserComment->id)}}" method="post">
         @csrf
         @method('delete')
         <input type="submit" value="Удалить"></input>
     </form>
-</div>
-
-  <hr>
-</div>
-@endforeach
-
+  </div>
+    @foreach ($reviewUserComment->getMedia('reviewUserComments') as $image)
+    <div>
+      <img src="{{$image->getUrl()}}"></img>
+    </div>
+    @endforeach
+    <hr>
+    @endforeach
 <div>
   {{$reviewUserComments->withQueryString()->links()}}
 </div>
 
   <hr>
   <div>
-    <form action="{{route('review.reviewUserComment.store', $review->id)}}" method="post">
+    <form action="{{route('review.reviewUserComment.store', $review->id)}}" method="post" enctype="multipart/form-data">
       @csrf
         <div class="mb-3">
           <textarea class="form-control" name="content" id="content" placeholder="Commentary">{{old('content')}}</textarea>
         </div>
         <div class="mb-3">
-          <input value="{{old('image')}}" type="text" name="image" class="form-control" id="image" placeholder="Image">
+          <label for="image">Фото</label>
+          <input type="file" multiple name="image[]" class="form-control" id="image" placeholder="Image" accept=".png, .jpg, .jpeg"></input>
           @error('image')
           <p class="text-danger">Ошибка с добавлением фото</p>
           @enderror
-        </div>
+      </div>
         <button type="submit" class="btn btn-primary mb-3">Опубликовать</button>
     </form>
   </div>

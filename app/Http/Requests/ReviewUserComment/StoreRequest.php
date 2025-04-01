@@ -22,11 +22,12 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content'=>'',
-            'image'=>'',
+            'content'=>'string',
             'review_id'=>'',
             'user_id'=>'',
-            'reply_id'=>'',      
+            'reply_id'=>'',
+            'image'=> ['array','max:5'],
+            'image.*' => ['extensions:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],      
         ];
     }
 }
