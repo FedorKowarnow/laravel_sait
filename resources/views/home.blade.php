@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3">
             <label for="user_image">Фото</label>
-            <input type="file" name="user_image[]" class="form-control" id="user_image" placeholder="Image" accept=".png, .jpg, .jpeg"></input>
+            <input type="file" name="user_image" class="form-control" id="user_image" placeholder="Image" accept=".png, .jpg, .jpeg"></input>
             @error('user_image')
             <p class="text-danger">Ошибка с добавлением фото</p>
             @enderror

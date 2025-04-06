@@ -26,8 +26,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'user_info'=>'',
-            'user_image'=> ['array','max:1'],
-            'user_image.*' => ['extensions:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],  
+            'user_image' => ['extensions:jpg,jpeg,png','mimes:jpg,jpeg,png','max:20480'],  
         ];
         
     }
