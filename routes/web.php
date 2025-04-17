@@ -3,13 +3,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use Inertia\Inertia;
 
 
 
 Route::get('/', function () {
-    return '1111';
-    //return view('welcome');
-});
+    return Inertia::render('Homo');
+})->name('homo');
 
 //Category
 Route::group(['namespace' => 'App\Http\Controllers\Category'], function () {
