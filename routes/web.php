@@ -11,14 +11,14 @@ Route::get('/', function () {
     return Inertia::render('Homo');
 })->name('homo');
 
-//Category
+//Category (на реакт)
 Route::group(['namespace' => 'App\Http\Controllers\Category'], function () {
 Route::get('/category',IndexController::class)->name('category.index');
 });
 
 //Review
 Route::group(['namespace' => 'App\Http\Controllers\Review'], function () {
-    Route::get('/reviews',IndexController::class)->name('review.index');
+    Route::get('/reviews',IndexController::class)->name('review.index'); // На реакт
     Route::get('/review/create',CreateController::class)->name('review.create')->middleware('auth');
     Route::post('/reviews',StoreController::class)->name('review.store')->middleware('auth');
     Route::get('/review/{review}',ShowController::class)->name('review.show');
@@ -34,7 +34,7 @@ Route::group(['namespace' => 'App\Http\Controllers\ReviewUserComment'], function
 });
 
 
-//Main page
+//Main page (на реакт)
 Route::get('/main', MainController::class)->name('main');
 
 //Standart UserPage

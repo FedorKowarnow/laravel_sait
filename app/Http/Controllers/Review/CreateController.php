@@ -16,7 +16,8 @@ class CreateController extends BaseController
         
         $categories = Category::all();
         
-        return view('review.create', compact('categories'));
+        return inertia('ReviewCreate', ['categories'=>$categories]);
+        //return view('review.create', compact('categories'));
     }
         
     

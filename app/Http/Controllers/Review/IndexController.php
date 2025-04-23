@@ -16,8 +16,10 @@ class IndexController extends BaseController
 
         $filter=app()->make(ReviewFilter::class, ['queryParams' => array_filter($data)]);
 
-        $reviews=Review::filter($filter)->paginate(10);
-        
-        return view('review.index', compact('reviews'));
+        $reviews=Review::filter($filter)->paginate(1);
+        $reviews->load('user');
+
+        return inertia('Reviews', ['reviews'=>$reviews]);
+        //return view('review.index', compact('reviews'));
     }         
 }

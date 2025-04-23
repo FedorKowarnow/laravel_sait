@@ -14,6 +14,7 @@ class IndexController extends Controller
     {
         $categories=Category::all();
         
-        return view('category.index', compact('categories'));
+        return inertia('Category', ['categories'=>$categories]);
+        //return view('category.index', compact('categories'));
     }         
 }

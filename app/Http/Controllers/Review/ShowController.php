@@ -12,7 +12,9 @@ class ShowController extends BaseController
 {
     public function __invoke(Review $review)
     {   
-        $reviewUserComments=$review->reviewUserComment()->paginate(5); 
+        $reviewUserComments=$review->reviewUserComment()->paginate(5);
+        
+        
         return view('review.show', compact('review','reviewUserComments'));
     }
         
